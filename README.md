@@ -33,7 +33,7 @@ This is the simplest. No pre-processing is needed.
 ### 2. iNaturalist
 This requires you to **manually export a CSV from the iNaturalist website**. This exported CSV is your metadata file.
 
-1.  Go to [iNaturalist.org](https://www.inaturalist.org) and log in.
+1.  Go to [iNaturalist.org](https://www.inaturalist.org/observations/export) and log in.
 2.  In the main search bar, search for the taxon you want (e.g., "Scolytinae").
 3.  Click the **"Filters"** tab (next to "Observations").
 4.  In the "More Filters" pop-up, click the **"Download"** button.
