@@ -202,11 +202,15 @@ def search_taieol_media(species_name, api_key):
     if not data:
         return []
         
+    if isinstance(data, dict):
+        data = [data] 
+        
     try:
         for species_result in data:
             if 'media' in species_result:
                 media_items.extend(species_result['media'])
     except Exception as e:
+        print(f"[WARN] Error parsing data for {species_name}: {e}")
         pass
         
     return media_items
@@ -225,7 +229,9 @@ def run_taieol_download(args):
             print(f"[ERROR] CSV file '{species_csv}' must contain 'genus' and 'species' columns.")
             sys.exit(1)
         
-        df['full_name'] = df['genus'] + ' ' + df['species']
+        df['species_clean'] = df['species'].apply(lambda x: str(x).strip().split()[-1] if pd.notna(x) else x)
+        
+        df['full_name'] = df['genus'] + ' ' + df['species_clean']
         species_list = df['full_name'].dropna().unique().tolist()
         
     except FileNotFoundError:
